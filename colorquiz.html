@@ -308,10 +308,18 @@
 
     <!-- Review Modal -->
     <div id="reviewModal" class="modal">
-      <div class="modal-content">
-        <h2>Review Colors</h2>
-        <div class="color-grid" id="colorGrid"></div>
-        <button id="closeReviewBtn">Menu</button>
+      <div class="modal-content" style="max-width: 600px;">
+        <h2>Color Flashcard Review</h2>
+        <div id="reviewCardContainer" style="margin: 20px 0; text-align: center;">
+          <div id="reviewColorBox" style="width: min(80vw, 300px); height: min(80vw, 300px); margin: 0 auto; border: 3px solid #555; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: background-color 0.3s;"></div>
+          <h3 id="reviewColorName" style="font-size: 38px; margin: 25px 0 5px 0; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"></h3>
+          <p id="reviewCounter" style="font-size: 16px; color: #aaa; margin: 0;"></p>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
+          <button id="prevReviewBtn" style="padding: 10px 25px; font-size: 16px; border-radius: 8px; border: none; background: #2196F3; color: white; cursor: pointer;">Previous</button>
+          <button id="nextReviewBtn" style="padding: 10px 25px; font-size: 16px; border-radius: 8px; border: none; background: #4CAF50; color: white; cursor: pointer;">Next</button>
+        </div>
+        <button id="closeReviewBtn" style="margin-top: 25px; padding: 8px 20px; font-size: 14px; border-radius: 8px; border: none; background: #666; color: white; cursor: pointer;">Menu</button>
       </div>
     </div>
 
@@ -371,28 +379,43 @@
         game.style.display = "block";
       });
 
-      /* Review modal */
+      /* Review modal / Flashcards */
       const reviewModal = document.getElementById("reviewModal");
       const closeReviewBtn = document.getElementById("closeReviewBtn");
-      const colorGrid = document.getElementById("colorGrid");
+      const reviewColorBox = document.getElementById("reviewColorBox");
+      const reviewColorName = document.getElementById("reviewColorName");
+      const reviewCounter = document.getElementById("reviewCounter");
+      const prevReviewBtn = document.getElementById("prevReviewBtn");
+      const nextReviewBtn = document.getElementById("nextReviewBtn");
 
-      // Build color cards
-      colors.forEach((c) => {
-        const card = document.createElement("div");
-        card.classList.add("color-card");
-        card.style.background = c.hex;
-        card.textContent = c.name;
-        colorGrid.appendChild(card);
-      });
+      let reviewIndex = 0;
+
+      function updateReviewCard() {
+        const colorItem = colors[reviewIndex];
+        reviewColorBox.style.backgroundColor = colorItem.hex;
+        reviewColorName.textContent = colorItem.name;
+        reviewColorName.style.color = colorItem.hex === "#FFFFFF" ? "#333" : colorItem.hex;
+        reviewCounter.textContent = `Color ${reviewIndex + 1} of ${colors.length}`;
+      }
 
       reviewBtn.addEventListener("click", () => {
+        reviewIndex = 0;
+        updateReviewCard();
         reviewModal.style.display = "block";
+      });
+
+      prevReviewBtn.addEventListener("click", () => {
+        reviewIndex = (reviewIndex - 1 + colors.length) % colors.length;
+        updateReviewCard();
+      });
+
+      nextReviewBtn.addEventListener("click", () => {
+        reviewIndex = (reviewIndex + 1) % colors.length;
+        updateReviewCard();
       });
 
       closeReviewBtn.addEventListener("click", () => {
         reviewModal.style.display = "none";
-
-        
       });
 
       /* Game logic */
