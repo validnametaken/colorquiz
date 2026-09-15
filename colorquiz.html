@@ -308,18 +308,18 @@
 
     <!-- Review Modal -->
     <div id="reviewModal" class="modal">
-      <div class="modal-content" style="max-width: 600px;">
-        <h2>Color Flashcard Review</h2>
-        <div id="reviewCardContainer" style="margin: 20px 0; text-align: center;">
-          <div id="reviewColorBox" style="width: min(80vw, 300px); height: min(80vw, 300px); margin: 0 auto; border: 3px solid #555; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: background-color 0.3s;"></div>
-          <h3 id="reviewColorName" style="font-size: 38px; margin: 25px 0 5px 0; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"></h3>
+      <div class="modal-content" style="max-width: 90vw; max-height: 90vh; width: 600px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow-y: auto;">
+        <h2 style="margin-top: 0; font-size: 28px;">Color Flashcard Review</h2>
+        <div id="reviewCardContainer" style="margin: 10px 0; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div id="reviewColorBox" style="width: min(50vw, 40vh); height: min(50vw, 40vh); max-width: 280px; max-height: 280px; margin: 0 auto; border: 3px solid #555; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: background-color 0.3s;"></div>
+          <h3 id="reviewColorName" style="font-size: min(6vw, 36px); margin: 15px 0 5px 0; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"></h3>
           <p id="reviewCounter" style="font-size: 16px; color: #aaa; margin: 0;"></p>
         </div>
-        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
           <button id="prevReviewBtn" style="padding: 10px 25px; font-size: 16px; border-radius: 8px; border: none; background: #2196F3; color: white; cursor: pointer;">Previous</button>
           <button id="nextReviewBtn" style="padding: 10px 25px; font-size: 16px; border-radius: 8px; border: none; background: #4CAF50; color: white; cursor: pointer;">Next</button>
         </div>
-        <button id="closeReviewBtn" style="margin-top: 25px; padding: 8px 20px; font-size: 14px; border-radius: 8px; border: none; background: #666; color: white; cursor: pointer;">Menu</button>
+        <button id="closeReviewBtn" style="margin-top: 15px; padding: 8px 20px; font-size: 14px; border-radius: 8px; border: none; background: #666; color: white; cursor: pointer; align-self: center;">Menu</button>
       </div>
     </div>
 
